@@ -11,7 +11,7 @@ function App() {
             <Card id='main-card'>
               <h1>M A C R O B L O G</h1>
 
-              <h2>In a world full of micro blogging ... it's time to think B I G</h2>
+              <h2>In a world full of micro blogging ... it's time to think BIG</h2>
 
               <Button id='resizable-button'>Read More</Button>
             </Card>

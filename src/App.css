@@ -95,9 +95,11 @@ h1{
   transition: 0.5s;
   -webkit-text-stroke: calc(.1vh + .1vw) black;
   font-weight: 2000;
+  overflow: hidden;
+  white-space: nowrap;
 }
 h1:hover{
-  color: #006043;
+  color: black;
   transition: 0.5s;
 }
 
@@ -107,7 +109,7 @@ h2{
   transition: 0.5s;
   text-align: center;
   margin: auto;
-
+overflow-wrap: break-word;
 }
 h2:hover{
   color: #ef3053;
@@ -120,6 +122,7 @@ h2:hover{
     z-index: -2;
     align-items: center;
     justify-content: center;
+    padding: 5%;
 }
 
 #resizable-button {
