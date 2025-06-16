@@ -10,7 +10,9 @@ function App() {
           <div >
             <Card id='main-card'>
               <h1>M A C R O B L O G</h1>
-              <p>hi</p>
+
+              <h2>In a world full of micro blogging ... it's time to think B I G</h2>
+
               <Button id='resizable-button'>Read More</Button>
             </Card>
           </div>

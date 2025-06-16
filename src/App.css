@@ -91,7 +91,27 @@
 
 h1{
   font-size: calc(4vw + 4vh);
+  color: #00D696;
+  transition: 0.5s;
+  -webkit-text-stroke: calc(.1vh + .1vw) black;
+  font-weight: 2000;
+}
+h1:hover{
+  color: #006043;
+  transition: 0.5s;
+}
+
+h2{
+  font-size: calc(2vw + 2vh);
   color: --color-main;
+  transition: 0.5s;
+  text-align: center;
+  margin: auto;
+
+}
+h2:hover{
+  color: #ef3053;
+  transition: 0.5s;
 }
 
 #main-card {
