@@ -111,10 +111,7 @@ h2{
   margin: auto;
 overflow-wrap: break-word;
 }
-h2:hover{
-  color: #ef3053;
-  transition: 0.5s;
-}
+
 
 #main-card {
     width: 80vw;
