@@ -1,8 +1,11 @@
+/* Core Imports */
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* Custom Variant for Dark Mode */
 @custom-variant dark (&:is(.dark *));
 
+/* Color Variables */
 :root {
   --background: oklch(95.31% 0.0496 169.04);
   --secondary-background: oklch(100% 0 0);
@@ -20,21 +23,8 @@
   --chart-5: #0099FF;
   --chart-active-dot: #000;
 }
-.grid-bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none;
-  z-index: -1;
-  background-size: 80px 80px;
-  background-image:
-    linear-gradient(to right, #fff 2px, transparent 2px),
-    linear-gradient(to bottom, #fff 2px, transparent 2px);
-  will-change: background-position;
-}
 
+/* Dark Mode Overrides */
 .dark {
   --background: oklch(22.71% 0.0252 182.05);
   --secondary-background: oklch(23.93% 0 0);
@@ -52,6 +42,7 @@
   --chart-active-dot: #fff;
 }
 
+/* Theme Inline Variables */
 @theme inline {
   --color-main: var(--main);
   --color-background: var(--background);
@@ -77,53 +68,121 @@
   --font-weight-heading: 800;
 }
 
-
-
-@layer base {
-  body {
-    @apply text-foreground font-base bg-background;
+/* Desktop View */
+@media (min-width: 768px) {
+  @layer base {
+    body {
+      @apply text-foreground font-base bg-background;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      @apply font-heading;
+    }
   }
 
-  h1, h2, h3, h4, h5, h6{
-    @apply font-heading;
+  /* Grid Background Animation */
+  .grid-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: -1;
+    background-size: 80px 80px;
+    background-image:
+      linear-gradient(to right, #fff 2px, transparent 2px),
+      linear-gradient(to bottom, #fff 2px, transparent 2px);
+    will-change: background-position;
+    animation: tunnelTravel 20s linear infinite;
   }
-}
 
-h1{
-  font-size: calc(4vw + 4vh);
-  color: #00D696;
-  transition: 0.5s;
-  -webkit-text-stroke: calc(.1vh + .1vw) black;
-  font-weight: 2000;
-  overflow: hidden;
-  white-space: nowrap;
-}
-h1:hover{
-  color: black;
-  transition: 0.5s;
-}
+  @keyframes tunnelTravel {
+    0% {
+      background-position: 0vw 100vh;
+    }
+    100% {
+      background-position: 0vw 0vh;
+    }
+  }
 
-h2{
-  font-size: calc(2vw + 2vh);
-  color: --color-main;
-  transition: 0.5s;
-  text-align: center;
-  margin: auto;
-overflow-wrap: break-word;
-}
+  /* Headings */
+  h1 {
+    font-size: calc(4vw + 4vh);
+    color: var(--chart-1);
+    transition: 0.5s;
+    -webkit-text-stroke: calc(.1vh + .1vw) black;
+    font-weight: 2000;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  h1:hover {
+    color: black;
+    transition: 0.5s;
+  }
 
+  h2 {
+    font-size: calc(2vw + 2vh);
+    color: var(--color-main);
+    transition: 0.5s;
+    text-align: center;
+    margin: auto;
+    overflow-wrap: break-word;
+  }
 
-#main-card {
+  /* Main Card */
+  #main-card {
     width: 80vw;
     height: 80vh;
     z-index: -2;
+    display: flex;
     align-items: center;
     justify-content: center;
     padding: 5%;
+  }
+
+  /* Resizable Button */
+  #resizable-button {
+    width: 20vw;
+    height: 10vh;
+    font-size: calc(1.5vw + 1.5vh);
+  }
 }
 
-#resizable-button {
-  width: 20vw;
-  height: 10vh;
-  font-size: calc(1.5vw + 1.5vh);
+/* Mobile View Overrides */
+@media (max-width: 767px) {
+  
+  body {
+    @apply p-4;
+    overflow: hidden;
+  }
+  #main-card {
+    width: 80vw;
+    height: 80vh;
+    padding: 10%;
+    align-items: center;
+    justify-content: center;
+  }
+    .grid-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: -1;
+    background-size: 80px 80px;
+    background-image:
+      linear-gradient(to right, #fff 2px, transparent 2px),
+      linear-gradient(to bottom, #fff 2px, transparent 2px);
+    will-change: background-position;
+    animation: tunnelTravel 20s linear infinite;
+  }
+    @keyframes tunnelTravel {
+    0% {
+      background-position: 0vw 100vh;
+    }
+    100% {
+      background-position: 0vw 0vh;
+    }
+  }
 }
