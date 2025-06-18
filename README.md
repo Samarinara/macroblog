@@ -1,54 +1,15 @@
-# React + TypeScript + Vite
+# Have you ever hit the character limit of a tweet?
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The internet used to have a beautiful way for anyone to speak their mind and create a place for all of their random thoughts and ideas. With the rise of twitter and other microblogging sites, our posts got much smaller and so did our thoughts. We fell out of the habit of reading and writing in long form.
 
-Currently, two official plugins are available:
+To combat that, let me introduce...
+# MACROBLOG
+by team _usernameTaken
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Macroblog is a blogging platform to read and post blogs in the most open way possible.
 
-## Expanding the ESLint configuration
+## Portability
+All macroblog posts are in markdown format. At any point, you can pick up all of your posts and move them anywhere. Another blogging site like medium.com, a self hosted website, or even just a hard drive could be the next home for the blog you start here. 
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+## Federation
+All macroblog posts are federated over the AT protocol, meaning everything is completely open. Anyone is able to make a client that can post and read posts from any macroblog blog. Visit atproto.com to learn more about the protocol itself. 
