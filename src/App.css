@@ -129,6 +129,14 @@
     overflow-wrap: break-word;
   }
 
+  h3 {
+    font-size: calc(1vw + .1vh);
+    color: black;
+    transition: 0.5s;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
   /* Main Card */
   #main-card {
     width: 80vw;
