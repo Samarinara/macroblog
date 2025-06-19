@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { useEffect, useState } from "react";
 import { fetchAtProtoProfile } from './ATProtoStuff/AccountDetailFetcher';
+import { useNavigate } from 'react-router-dom';
 
 // Blog Search Page Component
 function SearchPage() {
@@ -22,6 +23,7 @@ function SearchPage() {
         <h2> _usernameTaken Blogs</h2>
         <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-8 items-center justify-center'>
             <ProfileCard handle={"samarinara.bsky.social"}></ProfileCard>
+            <ProfileCard handle={"dame.is"}></ProfileCard>
 
         </div>
     </div>
@@ -44,10 +46,17 @@ async function fetchProfilePicture({handle}: HandleProp) {
 
 
 function ProfileCard({handle}: HandleProp) {
+  const navigate = useNavigate();
+
+  const handleLoadContent = (handle: string) => {
+    navigate(`/blog/${handle}`);
+  };
+
     const profilePromise = fetchDisplayName({handle});
     const profile = promiseMaker({myPromise: profilePromise});
     return (
-        <Button className="grid grid-cols-1 gap-4 grid-rows-[2fr_1fr] items-center justify-center h-[20vh] w-[20vh] overflow-hidden">
+        <Button className="grid grid-cols-1 gap-4 grid-rows-[2fr_1fr] items-center justify-center h-[20vh] w-[20vh] overflow-hidden"
+        onClick={() => handleLoadContent(handle)}>
         <div className="flex justify-center w-full">
             <ProfilePicture handle={handle} />
         </div>
