@@ -5,12 +5,38 @@ import { Input } from '@/components/ui/input'
 
 // Blog Search Page Component
 function SearchPage() {
+    function goHome(){
+        window.location.href = '/home'
+    }
+
+
   return (
 <>
     <div className="flex flex-col gap-5 items-center justify-center align-top m-20">
         <h1>Search</h1>
+        <div className='flex flex-row gap-20 items-center justify-center'>
+            <Button onClick={goHome}>Home</Button>
+        </div>
         <Input className='w-[50vw]' placeholder='Search for blogs...'></Input>
         <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-8 items-center justify-center'>
+            <ProfileCard></ProfileCard>
+            <ProfileCard></ProfileCard>
+            <ProfileCard></ProfileCard>
+            <ProfileCard></ProfileCard>
+            <ProfileCard></ProfileCard>
+            <ProfileCard></ProfileCard>
+            <ProfileCard></ProfileCard>
+            <ProfileCard></ProfileCard>
+            <ProfileCard></ProfileCard>
+            <ProfileCard></ProfileCard>
+            <ProfileCard></ProfileCard>
+            <ProfileCard></ProfileCard>
+            <ProfileCard></ProfileCard>
+            <ProfileCard></ProfileCard>
+            <ProfileCard></ProfileCard>
+            <ProfileCard></ProfileCard>
+            <ProfileCard></ProfileCard>
+            <ProfileCard></ProfileCard>
             <ProfileCard></ProfileCard>
             <ProfileCard></ProfileCard>
             <ProfileCard></ProfileCard>
