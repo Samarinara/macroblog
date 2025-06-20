@@ -66,7 +66,7 @@ function ProfileCard({handle}: HandleProp) {
     );
 }
 
-function ProfilePicture({handle}: HandleProp) {
+export function ProfilePicture({handle}: HandleProp) {
     const profilePromise = fetchProfilePicture({handle});
     const avatar = promiseImageMaker({myPromise: profilePromise});
   return (
