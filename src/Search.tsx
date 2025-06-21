@@ -20,9 +20,9 @@ function SearchPage() {
 
   // Default featured users
   const featuredUsers = [
-    { handle: "samarinara.bsky.social", displayName: "Samarinara" },
-    { handle: "dame.is", displayName: "Dame" },
-    { handle: "dysonsphere42.bsky.social", displayName: "Dysonsphere" },
+    { handle: "samarinara.bsky.social", displayName: "Samarinara" }, 
+    { handle: "dame.is", displayName: "dummy" },
+    { handle: "dysonsphere42.bsky.social", displayName: "Dysonsphere" }, // This will be fetched by ProfileCard
   ];
 
   const handleSearch = async () => {
@@ -117,7 +117,7 @@ function SearchPage() {
           )}
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-            {(searchQuery ? searchResults : featuredUsers).map((user) => (
+            {(searchQuery ? searchResults : featuredUsers).map((user) => ( // Use featuredUsers directly here
               <ProfileCard key={user.handle} handle={user.handle} />
             ))}
           </div>

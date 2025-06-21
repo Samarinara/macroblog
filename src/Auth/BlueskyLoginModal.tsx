@@ -1,7 +1,16 @@
 import React, { useState } from "react";
 import { useBlueskyAuth } from "./BlueskyAuthProvider";
-import { Card } from "@/components/ui/card";
-
+import { Button } from "@/components/ui/button"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 interface Props {
   onClose: () => void;
 }
@@ -25,212 +34,94 @@ const BlueskyLoginModal: React.FC<Props> = ({ onClose }) => {
     }
   };
 
-  return (
-    <Card style={{
-      position: "fixed", 
-      top: 0, 
-      left: 0, 
-      width: "100vw", 
-      height: "100vh",
-      background: "rgba(0,0,0,0.5)", 
-      display: "flex", 
-      alignItems: "center", 
-      justifyContent: "center", 
-      zIndex: 1000,
-      backdropFilter: "blur(4px)"
-    }}>
-      <Card className="w-[30vw] h-[80vh] m-[10vw]">
-        <div style={{ textAlign: "center", marginBottom: "24px" }}>
-          <h2 style={{ 
-            margin: "0 0 8px 0", 
-            fontSize: "24px", 
-            fontWeight: "600",
-            color: "#1f2937"
-          }}>
-            Sign in to Bluesky
-          </h2>
-          <p style={{ 
-            margin: 0, 
-            color: "#6b7280", 
-            fontSize: "14px"
-          }}>
-            Connect your Bluesky account to continue
-          </p>
-        </div>
-
-        <form onSubmit={handleSubmit}>
-          <div style={{ marginBottom: "16px" }}>
-            <label style={{
-              display: "block",
-              marginBottom: "6px",
-              fontSize: "14px",
-              fontWeight: "500",
-              color: "#374151"
-            }}>
-              Handle or Email
-            </label>
-            <input
+ return (
+  <div className="fixed inset-0 z-[1000] flex items-center justify-center bg-black/50 backdrop-blur-sm">
+    <Card className="w-full max-w-sm">
+      <CardHeader>
+        <CardTitle>Sign in to Bluesky</CardTitle>
+        <CardDescription>
+          Connect your Bluesky account to continue
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+          <div className="grid gap-2">
+            <Label htmlFor="identifier">Handle or Email</Label>
+            <Input
+              id="identifier"
               name="identifier"
               type="text"
               placeholder="alice.bsky.social"
               value={credentials.identifier}
               onChange={handleChange}
               required
-              style={{
-                width: "100%",
-                padding: "12px 16px",
-                border: "1px solid #d1d5db",
-                borderRadius: "8px",
-                fontSize: "14px",
-                transition: "border-color 0.2s ease",
-                boxSizing: "border-box"
-              }}
-              onFocus={(e) => {
-                e.target.style.borderColor = "#0085ff";
-                e.target.style.outline = "none";
-              }}
-              onBlur={(e) => {
-                e.target.style.borderColor = "#d1d5db";
-              }}
+              disabled={isLoading}
             />
           </div>
-
-          <div style={{ marginBottom: "24px" }}>
-            <label style={{
-              display: "block",
-              marginBottom: "6px",
-              fontSize: "14px",
-              fontWeight: "500",
-              color: "#374151"
-            }}>
-              App Password
-            </label>
-            <input
+          <div className="grid gap-2">
+            <Label htmlFor="password">App Password</Label>
+            <Input
+              id="password"
               name="password"
               type="password"
               placeholder="Enter your app password"
               value={credentials.password}
               onChange={handleChange}
               required
-              style={{
-                width: "100%",
-                padding: "12px 16px",
-                border: "1px solid #d1d5db",
-                borderRadius: "8px",
-                fontSize: "14px",
-                transition: "border-color 0.2s ease",
-                boxSizing: "border-box"
-              }}
-              onFocus={(e) => {
-                e.target.style.borderColor = "#0085ff";
-                e.target.style.outline = "none";
-              }}
-              onBlur={(e) => {
-                e.target.style.borderColor = "#d1d5db";
-              }}
+              disabled={isLoading}
             />
           </div>
-
           {error && (
-            <div style={{ 
-              color: "#dc2626", 
-              marginBottom: "16px", 
-              fontSize: "14px",
-              padding: "12px",
-              backgroundColor: "#fef2f2",
-              borderRadius: "8px",
-              border: "1px solid #fecaca"
-            }}>
+            <div className="text-red-700 bg-red-50 border border-red-200 rounded px-3 py-2 text-sm">
               {error}
             </div>
           )}
-
-          <button 
+          <Button
             type="submit"
+            className="w-full"
             disabled={isLoading}
-            style={{
-              width: "100%",
-              padding: "12px 24px",
-              fontSize: "16px",
-              fontWeight: "500",
-              backgroundColor: isLoading ? "#9ca3af" : "#0085ff",
-              color: "white",
-              border: "none",
-              borderRadius: "8px",
-              cursor: isLoading ? "not-allowed" : "pointer",
-              transition: "all 0.2s ease",
-              marginBottom: "16px"
-            }}
-            onMouseEnter={(e) => {
-              if (!isLoading) {
-                e.currentTarget.style.backgroundColor = "#0073e6";
-              }
-            }}
-            onMouseLeave={(e) => {
-              if (!isLoading) {
-                e.currentTarget.style.backgroundColor = "#0085ff";
-              }
-            }}
           >
             {isLoading ? "Signing in..." : "Sign in"}
-          </button>
+          </Button>
         </form>
-
-        <button 
+      </CardContent>
+      <CardFooter className="flex flex-col gap-2">
+        <Button
+          variant="neutral"
+          className="w-full"
           onClick={onClose}
-          style={{
-            width: "100%",
-            padding: "8px 16px",
-            fontSize: "14px",
-            backgroundColor: "transparent",
-            color: "#6b7280",
-            border: "1px solid #d1d5db",
-            borderRadius: "6px",
-            cursor: "pointer",
-            transition: "all 0.2s ease"
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = "#f9fafb";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = "transparent";
-          }}
+          disabled={isLoading}
         >
           Cancel
-        </button>
-
-        <div style={{ 
-          fontSize: "12px", 
-          marginTop: "16px", 
-          color: "#9ca3af",
-          lineHeight: "1.5",
-          textAlign: "center"
-        }}>
-          <p style={{ margin: "0 0 8px 0" }}>
+        </Button>
+        <div className="mt-4 text-center text-xs text-gray-400 leading-6 w-[90%] mx-auto">
+          <p>
             Use your Bluesky handle or email and an <strong>app password</strong>.
           </p>
-          <p className="text-center ">
-            <a 
-              href="https://bsky.app/" 
-              target="_blank" 
+          <div className="flex flex-col gap-1 mt-2">
+            <a
+              href="https://bsky.app/"
+              target="_blank"
               rel="noopener noreferrer"
-              style={{ color: "#0085ff", textDecoration: "none" }}
+              className="text-blue-600 hover:underline"
             >
-              Get a bluesky account
+              Get a Bluesky account
             </a>
-            <a 
-              href="https://bsky.app/settings/app-passwords" 
-              target="_blank" 
+            <a
+              href="https://bsky.app/settings/app-passwords"
+              target="_blank"
               rel="noopener noreferrer"
-              style={{ color: "#0085ff", textDecoration: "none" }}
+              className="text-blue-600 hover:underline"
             >
-              Get an app password 
+              Get an app password
             </a>
-          </p>
+          </div>
         </div>
-      </Card>
+      </CardFooter>
     </Card>
-  );
-};
+  </div>
+);
+}
+
 
 export default BlueskyLoginModal; 
