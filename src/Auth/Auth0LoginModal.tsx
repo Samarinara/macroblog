@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useAuth0Context } from "./Auth0Provider";
+import { Button } from '@/components/ui/button'
+
 
 interface Props {
   onClose: () => void;
@@ -61,22 +63,11 @@ const Auth0LoginModal: React.FC<Props> = ({ onClose }) => {
           Connect your Bluesky account using Auth0 for secure authentication
         </p>
 
-        <button 
+        <Button 
           onClick={handleLogin}
           disabled={isLoading || isLoggingIn}
           style={{
-            width: "100%",
-            padding: "12px 24px",
-            fontSize: "16px",
-            fontWeight: "500",
-            backgroundColor: "#0085ff",
-            color: "white",
-            border: "none",
-            borderRadius: "8px",
-            cursor: isLoading || isLoggingIn ? "not-allowed" : "pointer",
-            opacity: isLoading || isLoggingIn ? 0.7 : 1,
-            transition: "all 0.2s ease",
-            marginBottom: "16px"
+
           }}
           onMouseEnter={(e) => {
             if (!isLoading && !isLoggingIn) {
@@ -94,7 +85,7 @@ const Auth0LoginModal: React.FC<Props> = ({ onClose }) => {
           ) : (
             <span>Sign in with Auth0</span>
           )}
-        </button>
+        </Button>
 
         {error && (
           <div style={{ 
@@ -110,19 +101,9 @@ const Auth0LoginModal: React.FC<Props> = ({ onClose }) => {
           </div>
         )}
 
-        <button 
+        <Button 
           onClick={onClose}
-          style={{
-            width: "100%",
-            padding: "8px 16px",
-            fontSize: "14px",
-            backgroundColor: "transparent",
-            color: "#666",
-            border: "1px solid #ddd",
-            borderRadius: "6px",
-            cursor: "pointer",
-            transition: "all 0.2s ease"
-          }}
+
           onMouseEnter={(e) => {
             e.currentTarget.style.backgroundColor = "#f5f5f5";
           }}
@@ -131,7 +112,7 @@ const Auth0LoginModal: React.FC<Props> = ({ onClose }) => {
           }}
         >
           Cancel
-        </button>
+        </Button>
 
         <div style={{ 
           fontSize: "12px", 

@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useAuth } from "./AuthProvider";
 
+import { Button } from '@/components/ui/button'
+
+
 interface Props {
   onClose: () => void;
 }
@@ -37,7 +40,7 @@ const LoginModal: React.FC<Props> = ({ onClose }) => {
         <form onSubmit={handleSubmit}>
           <input
             name="identifier"
-            placeholder="Handle or email"
+            placeholder="Handle (@bob.bsky.social)"
             onChange={handleChange}
             value={input.identifier}
             style={{ display: "block", marginBottom: 8, width: "100%" }}
@@ -51,10 +54,10 @@ const LoginModal: React.FC<Props> = ({ onClose }) => {
             value={input.password}
             style={{ display: "block", marginBottom: 8, width: "100%" }}
           />
-          <button type="submit" style={{ width: "100%", marginBottom: 8 }}>Login</button>
+          <Button type="submit" style={{ width: "100%", marginBottom: 8 }}>Login</Button>
           {error && <div style={{ color: "red", marginBottom: 8 }}>{error}</div>}
         </form>
-        <button onClick={onClose} style={{ width: "100%" }}>Close</button>
+        <Button onClick={onClose} style={{ width: "100%" }}>Close</Button>
         <div style={{ fontSize: 12, marginTop: 8, color: "#555" }}>
           Use your Bluesky handle or email and an <b>app password</b> (not your main password).<br />
           <a href="https://bsky.app/settings/app-passwords" target="_blank" rel="noopener noreferrer">

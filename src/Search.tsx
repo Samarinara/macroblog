@@ -44,6 +44,33 @@ async function fetchProfilePicture({handle}: HandleProp) {
     return (await profile).avatar;
 }
 
+function usePromiseValue(myPromise: Promise<string | undefined> | undefined) {
+  const [value, setValue] = useState("");
+  useEffect(() => {
+    let cancelled = false;
+    myPromise?.then((val) => {
+      if (!cancelled) setValue(val ?? "");
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [myPromise]);
+  return value;
+}
+
+function usePromiseImageValue(myPromise: Promise<string | undefined> | undefined) {
+  const [value, setValue] = useState("");
+  useEffect(() => {
+    let cancelled = false;
+    myPromise?.then((val) => {
+      if (!cancelled) setValue(val ?? "");
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [myPromise]);
+  return value;
+}
 
 function ProfileCard({handle}: HandleProp) {
   const navigate = useNavigate();
@@ -53,7 +80,7 @@ function ProfileCard({handle}: HandleProp) {
   };
 
     const profilePromise = fetchDisplayName({handle});
-    const profile = promiseMaker({myPromise: profilePromise});
+    const profile = usePromiseValue(profilePromise);
     return (
         <Button className="grid grid-cols-1 gap-4 grid-rows-[2fr_1fr] items-center justify-center h-[20vh] w-[20vh] overflow-hidden"
         onClick={() => handleLoadContent(handle)}>
@@ -68,12 +95,12 @@ function ProfileCard({handle}: HandleProp) {
 
 export function ProfilePicture({handle}: HandleProp) {
     const profilePromise = fetchProfilePicture({handle});
-    const avatar = promiseImageMaker({myPromise: profilePromise});
+    const avatar = usePromiseImageValue(profilePromise);
   return (
     <div className='w-20 h-20 rounded-full overflow-hidden flex items-center justify-center bg-gray-200'>
       {avatar ? (
         <img
-          src={avatar.value}
+          src={avatar}
           alt="Profile"
           className="w-full h-full object-cover"
         />
@@ -83,26 +110,6 @@ export function ProfilePicture({handle}: HandleProp) {
       )}
     </div>
   );
-}
-
-function promiseMaker({ myPromise }: { myPromise: Promise<string | undefined> | undefined }) {
-  const [value, setValue] = useState("");
-
-  useEffect(() => {
-    myPromise?.then((val) => setValue(val ?? ""));
-  }, [myPromise]);
-
-  return <div>{value}</div>;
-}
-
-function promiseImageMaker({ myPromise }: { myPromise: Promise<string | undefined> | undefined }) {
-  const [value, setValue] = useState("");
-
-  useEffect(() => {
-    myPromise?.then((val) => setValue(val ?? ""));
-  }, [myPromise]);
-
-  return {value};
 }
 
 export default SearchPage
