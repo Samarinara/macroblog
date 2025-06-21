@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect, type ReactNode } from "react";
+/* import React, { createContext, useContext, useState, useEffect, type ReactNode } from "react";
 import { Auth0Provider as Auth0ReactProvider, useAuth0 } from "@auth0/auth0-react";
 import { auth0Config } from "../config/auth0";
 
@@ -125,4 +125,4 @@ export const useAuth0Context = () => {
   const ctx = useContext(AuthContext);
   if (!ctx) throw new Error("useAuth0Context must be used within Auth0Provider");
   return ctx;
-}; 
+};  */

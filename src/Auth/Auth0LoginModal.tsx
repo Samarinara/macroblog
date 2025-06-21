@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+/* import React, { useState } from "react";
 import { useAuth0Context } from "./Auth0Provider";
 import { Button } from '@/components/ui/button'
 
@@ -132,4 +132,4 @@ const Auth0LoginModal: React.FC<Props> = ({ onClose }) => {
   );
 };
 
-export default Auth0LoginModal; 
+export default Auth0LoginModal;  */
