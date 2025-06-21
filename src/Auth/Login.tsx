@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+/* import React, { useState } from "react";
 import { useAuth } from "./AuthProvider";
 
 export default function Login() {
@@ -9,16 +9,16 @@ export default function Login() {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+/*   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     await login(input);
-  };
+  }; */
 
-  return (
+/*   return (
     <form onSubmit={handleSubmit}>
       <input name="username" onChange={handleChange} placeholder="Username" />
       <input name="password" type="password" onChange={handleChange} placeholder="Password" />
       <button type="submit">Login</button>
     </form>
   );
-}
+}  */
