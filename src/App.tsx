@@ -7,6 +7,7 @@ import ProfileButton from "./Auth/ProfileButton";
 import HomePage from "./Home";
 import SearchPage from "./Search";
 import BlogPage from './Blog';
+import PostPage from './Post';
 
 function App() {
   return(
@@ -21,6 +22,7 @@ function App() {
           <Route path="/home" element={<HomePage />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/blog/:handle" element={<BlogPage />} />
+          <Route path="/blog/post/:handle/:uri" element={<PostPage />} />
           <Route path="*" element={<Navigate to="/home" replace />} />
         </Routes>
       </BlueskyAuthProvider>

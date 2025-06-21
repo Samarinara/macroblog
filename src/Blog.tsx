@@ -5,6 +5,9 @@ import { fetchAtProtoProfile } from './ATProtoStuff/AccountDetailFetcher';
 import { fetchMacroblogPosts, type MacroblogPost } from './ATProtoStuff/PostFetcher';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useNavigate } from 'react-router-dom';
+
+
 
 function BlogPage() {
   const { handle } = useParams();
@@ -17,6 +20,7 @@ function BlogPage() {
   const [displayName, setDisplayName] = useState<string>("");
   const [isLoadingProfile, setIsLoadingProfile] = useState(false);
   const [profileError, setProfileError] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   const fetchProfile = useCallback(async () => {
     if (!handle) return;
@@ -122,6 +126,15 @@ function BlogPage() {
     );
   }
 
+  const handleLoadContent = (post: MacroblogPost) => {
+    console.log('Full post object:', post);
+    console.log('Post URI being used:', post.uri);
+    console.log('Post title:', post.value.title);
+    console.log('Post CID:', post.cid);
+    console.log('Encoded URI:', encodeURIComponent(post.uri));
+    navigate(`/blog/post/${handle}/${encodeURIComponent(post.uri)}`);
+  };
+
   return (
     <>
       <div className="container mx-auto px-4 py-8">
@@ -157,7 +170,9 @@ function BlogPage() {
           {/* Posts Grid */}
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {posts.map((post, index) => (
-              <Card key={`${post.uri}-${index}`} className="hover:shadow-lg transition-shadow">
+              <Card key={`${post.uri}-${index}`} className="hover:shadow-lg transition-shadow cursor-pointer"
+              onClick={() => handleLoadContent(post)}
+              >
                 <CardHeader>
                   <CardTitle className="text-lg line-clamp-2">{post.value.title}</CardTitle>
                   <p className="text-sm text-gray-500">
