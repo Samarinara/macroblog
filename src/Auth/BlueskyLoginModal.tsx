@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useBlueskyAuth } from "./BlueskyAuthProvider";
+import { Card } from "@/components/ui/card";
 
 interface Props {
   onClose: () => void;
@@ -25,7 +26,7 @@ const BlueskyLoginModal: React.FC<Props> = ({ onClose }) => {
   };
 
   return (
-    <div style={{
+    <Card style={{
       position: "fixed", 
       top: 0, 
       left: 0, 
@@ -38,31 +39,8 @@ const BlueskyLoginModal: React.FC<Props> = ({ onClose }) => {
       zIndex: 1000,
       backdropFilter: "blur(4px)"
     }}>
-      <div style={{
-        background: "#fff", 
-        padding: "32px", 
-        borderRadius: "16px", 
-        minWidth: "400px", 
-        maxWidth: "500px",
-        boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
-        border: "1px solid #e5e7eb"
-      }}>
+      <Card className="w-[30vw] h-[80vh] m-[10vw]">
         <div style={{ textAlign: "center", marginBottom: "24px" }}>
-          <div style={{
-            width: "48px",
-            height: "48px",
-            background: "#0085ff",
-            borderRadius: "12px",
-            margin: "0 auto 16px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            fontSize: "24px",
-            color: "white",
-            fontWeight: "bold"
-          }}>
-            🌐
-          </div>
           <h2 style={{ 
             margin: "0 0 8px 0", 
             fontSize: "24px", 
@@ -231,19 +209,27 @@ const BlueskyLoginModal: React.FC<Props> = ({ onClose }) => {
           <p style={{ margin: "0 0 8px 0" }}>
             Use your Bluesky handle or email and an <strong>app password</strong>.
           </p>
-          <p style={{ margin: 0 }}>
+          <p className="text-center ">
+            <a 
+              href="https://bsky.app/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              style={{ color: "#0085ff", textDecoration: "none" }}
+            >
+              Get a bluesky account
+            </a>
             <a 
               href="https://bsky.app/settings/app-passwords" 
               target="_blank" 
               rel="noopener noreferrer"
               style={{ color: "#0085ff", textDecoration: "none" }}
             >
-              Get an app password →
+              Get an app password 
             </a>
           </p>
         </div>
-      </div>
-    </div>
+      </Card>
+    </Card>
   );
 };
 

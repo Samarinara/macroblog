@@ -21,7 +21,8 @@ function SearchPage() {
   // Default featured users
   const featuredUsers = [
     { handle: "samarinara.bsky.social", displayName: "Samarinara" },
-    { handle: "dame.is", displayName: "Dame" }
+    { handle: "dame.is", displayName: "Dame" },
+    { handle: "dysonsphere42.bsky.social", displayName: "Dysonsphere" },
   ];
 
   const handleSearch = async () => {
@@ -71,9 +72,7 @@ function SearchPage() {
     <>
       <div className="container mx-auto px-4 py-8">
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold mb-4">Search Blogs</h1>
-          <p className="text-gray-600 mb-6">Find and explore macroblog posts from Bluesky users</p>
-          
+          <h1 className="text-4x2 font-bold mb-4">Search Blogs</h1>          
           {/* Search Input */}
           <div className="max-w-2xl mx-auto mb-8">
             <div className="flex gap-2">
@@ -82,7 +81,7 @@ function SearchPage() {
                 placeholder="Search for users (e.g., alice.bsky.social)"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                onKeyPress={handleKeyPress}
+                onKeyDown={handleKeyPress}
               />
               <Button 
                 onClick={handleSearch}
