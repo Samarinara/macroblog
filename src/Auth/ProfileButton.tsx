@@ -1,12 +1,10 @@
 import { useState } from "react";
 import { Button } from '@/components/ui/button'
-import { useAuth0Context } from "./Auth0Provider";
-import Auth0LoginModal from "./Auth0LoginModal";
-import {Card} from '@/components/ui/card';
+import { useBlueskyAuth } from "./BlueskyAuthProvider";
+import BlueskyLoginModal from "./BlueskyLoginModal";
 
-
-  export default function ProfileButton() {
-  const { user, logout, isLoading } = useAuth0Context();
+export default function ProfileButton() {
+  const { user, logout, isLoading } = useBlueskyAuth();
   const [showLogin, setShowLogin] = useState(false);
 
   if (isLoading) {
@@ -19,23 +17,23 @@ import {Card} from '@/components/ui/card';
 
   if (user) {
     return (
-      <Card>
+      <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
         <Button onClick={logout} variant="neutral">
           Logout
         </Button>
         <Button>
-          {user.username}
+          {user.displayName || user.username}
         </Button>
-      </Card>
+      </div>
     );
   }
 
   return (
     <>
       <Button onClick={() => setShowLogin(true)}>
-        Sign in with Auth0
+        Sign in to Bluesky
       </Button>
-      {showLogin && <Auth0LoginModal onClose={() => setShowLogin(false)} />}
+      {showLogin && <BlueskyLoginModal onClose={() => setShowLogin(false)} />}
     </>
   );
 } 
