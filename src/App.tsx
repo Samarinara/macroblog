@@ -3,6 +3,7 @@ import "./App.css";
 
 import { BlueskyAuthProvider } from "./Auth/BlueskyAuthProvider";
 import ProfileButton from "./Auth/ProfileButton";
+import Navbar from "./customComponents/siteMenu";
 
 import HomePage from "./Home";
 import SearchPage from "./Search";
@@ -16,6 +17,9 @@ function App() {
       <BlueskyAuthProvider>
         <div className='fixed top-[3vh] right-[3vw]'>
           <ProfileButton></ProfileButton>
+        </div>
+        <div className='fixed top-[3vh] left-[3vw]'>
+          <Navbar></Navbar>
         </div>
         <Routes>
           <Route path="/" element={<Navigate to="/home" replace />} />

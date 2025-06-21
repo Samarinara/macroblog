@@ -193,7 +193,6 @@
   
   body {
     @apply p-4;
-    overflow: hidden;
   }
   #main-card {
     width: 80vw;
