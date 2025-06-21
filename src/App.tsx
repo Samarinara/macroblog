@@ -18,7 +18,6 @@ function App() {
           clientId="ZR86tiGSsGS0zv0UtYI8cq15pLL6961n"
           authorizationParams={{
             redirect_uri: window.location.origin,
-            audience: "https://bsky.social",
             scope: "openid profile email"
           }}
           cacheLocation="localstorage"
