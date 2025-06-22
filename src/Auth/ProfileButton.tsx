@@ -7,7 +7,10 @@ export default function ProfileButton() {
   const { user, logout, isLoading } = useBlueskyAuth();
   const [showLogin, setShowLogin] = useState(false);
 
-  if (isLoading) {
+  // Show loading only if we're actively loading AND we don't have user data
+  const shouldShowLoading = isLoading && !user;
+
+  if (shouldShowLoading) {
     return (
       <Button disabled>
         Loading...
