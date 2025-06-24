@@ -173,7 +173,6 @@ export default function PostPage() {
                 </div>
             </div>
         </div>
-    <div className="grid-bg"></div>
      </>                               
     );
 }

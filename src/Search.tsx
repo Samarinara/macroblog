@@ -130,7 +130,6 @@ function SearchPage() {
           </Button>
         </div>
       </div>
-      <div className="grid-bg"></div>
     </>
   );
 }

@@ -228,7 +228,6 @@ function BlogPage() {
           )}
         </div>
       </div>
-      <div className="grid-bg"></div>
     </>
   );
 }

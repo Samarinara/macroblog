@@ -41,7 +41,7 @@ export default function ProfileButton() {
               <ProfilePicture handle={user.username}></ProfilePicture>
             </MenubarTrigger>
             <MenubarContent>
-              <MenubarItem onClick={() => navigate('/home')}>
+              <MenubarItem onClick={() => navigate('/Profile/@'+user.username+'')}>
                 Profile
               </MenubarItem>
               <MenubarItem onClick={logout}>

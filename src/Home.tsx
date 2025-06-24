@@ -33,7 +33,6 @@ function HomePage() {
           </Card>
         </div>
       </div>
-      <div className="grid-bg"></div>
     </>
   )
 }
