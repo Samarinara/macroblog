@@ -2,10 +2,23 @@ import { useState } from "react";
 import { Button } from '@/components/ui/button'
 import { useBlueskyAuth } from "./BlueskyAuthProvider";
 import BlueskyLoginModal from "./BlueskyLoginModal";
+import {
+  Menubar,
+  MenubarContent,
+  MenubarItem,
+  MenubarMenu,
+  MenubarSeparator,
+  MenubarTrigger,
+} from "@/components/ui/menubar"
+import { useNavigate } from 'react-router-dom';
+import { ProfilePicture } from "../Search";
+
 
 export default function ProfileButton() {
   const { user, logout, isLoading } = useBlueskyAuth();
   const [showLogin, setShowLogin] = useState(false);
+  const navigate = useNavigate();
+
 
   // Show loading only if we're actively loading AND we don't have user data
   const shouldShowLoading = isLoading && !user;
@@ -21,12 +34,32 @@ export default function ProfileButton() {
   if (user) {
     return (
       <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-        <Button onClick={logout} variant="neutral">
-          Logout
-        </Button>
-        <Button>
-          {user.displayName || user.username}
-        </Button>
+        <Menubar >
+          <MenubarMenu>
+            <MenubarTrigger className="flex items-center gap-2 overflow-hidden">
+
+              <ProfilePicture handle={user.username}></ProfilePicture>
+            </MenubarTrigger>
+            <MenubarContent>
+              <MenubarItem onClick={() => navigate('/home')}>
+                Profile
+              </MenubarItem>
+              <MenubarItem onClick={logout}>
+                Log out
+              </MenubarItem>
+              <MenubarItem onClick={() => navigate('/home')}>
+                Reading
+              </MenubarItem>
+              <MenubarSeparator></MenubarSeparator>
+              <MenubarItem onClick={() => navigate('/search')}>
+                Manage My Blog
+              </MenubarItem>
+              <MenubarItem onClick={() => navigate('/home')}>
+                Write a Post
+              </MenubarItem>              
+            </MenubarContent>
+          </MenubarMenu>
+        </Menubar>
       </div>
     );
   }
@@ -40,4 +73,3 @@ export default function ProfileButton() {
     </>
   );
 } 
-
